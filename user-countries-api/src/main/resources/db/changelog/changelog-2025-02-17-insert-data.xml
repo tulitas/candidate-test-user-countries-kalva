@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet author="bernhards.bernans" id="4">
+        <!-- Insert users -->
+        <insert tableName="users">
+            <column name="id" value="1"/>
+            <column name="username" value="john_doe"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" value="2"/>
+            <column name="username" value="jane_doe"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id" value="3"/>
+            <column name="username" value="bob_smith"/>
+        </insert>
+
+        <!-- Insert countries with code -->
+        <insert tableName="countries">
+            <column name="id" value="1"/>
+            <column name="name" value="Latvia"/>
+            <column name="code" value="LV"/> <!-- Country code for Latvia -->
+        </insert>
+        <insert tableName="countries">
+            <column name="id" value="2"/>
+            <column name="name" value="Estonia"/>
+            <column name="code" value="EE"/> <!-- Country code for Estonia -->
+        </insert>
+        <insert tableName="countries">
+            <column name="id" value="3"/>
+            <column name="name" value="Lithuania"/>
+            <column name="code" value="LT"/> <!-- Country code for Lithuania -->
+        </insert>
+
+        <!-- Insert favorite_country relationships -->
+        <insert tableName="favorite_country">
+            <column name="user_id" value="1"/>
+            <column name="country_id" value="1"/>
+        </insert>
+        <insert tableName="favorite_country">
+            <column name="user_id" value="1"/>
+            <column name="country_id" value="2"/>
+        </insert>
+        <insert tableName="favorite_country">
+            <column name="user_id" value="2"/>
+            <column name="country_id" value="2"/>
+        </insert>
+        <insert tableName="favorite_country">
+            <column name="user_id" value="2"/>
+            <column name="country_id" value="3"/>
+        </insert>
+        <insert tableName="favorite_country">
+            <column name="user_id" value="3"/>
+            <column name="country_id" value="1"/>
+        </insert>
+        <insert tableName="favorite_country">
+            <column name="user_id" value="3"/>
+            <column name="country_id" value="3"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
