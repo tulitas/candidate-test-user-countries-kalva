@@ -101,7 +101,7 @@ You will implement functionality in **Angular** to list users and display their 
 
 # Submission Instructions:
 1. **Fork** the repository.
-2. **Implement** the `GET /users/{userId}/favorite-countries` endpoint in the controller and service layer.
+2. **Implement** the `GET favorite-countries` endpoint in the controller and service layer.
 3. **Implement** the `WebClient` method to fetch country data from the external API (name, code, capital).
 4. **Create** a **Liquibase changelog** to insert a new user and link them to at least two favorite countries.
 5. **Implement** the `UserListComponent` in Angular and set up the routing as described.
