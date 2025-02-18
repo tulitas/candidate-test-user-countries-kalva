@@ -17,6 +17,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>user-countries-api</module>
+        <module>user-countries-ui</module>
     </modules>
 
 

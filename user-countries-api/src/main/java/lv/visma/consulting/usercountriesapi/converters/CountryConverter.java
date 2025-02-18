@@ -3,7 +3,6 @@ package lv.visma.consulting.usercountriesapi.converters;
 import lombok.experimental.UtilityClass;
 import lv.visma.consulting.usercountriesapi.controllers.dto.CountryDto;
 import lv.visma.consulting.usercountriesapi.db.entities.CountryEntity;
-import lv.visma.consulting.usercountriesapi.web.client.CountryWebclient;
 import lv.visma.consulting.usercountriesapi.web.client.dto.WebClientCountryDto;
 
 import java.util.Collection;
