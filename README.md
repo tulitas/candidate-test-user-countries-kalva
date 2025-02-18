@@ -7,6 +7,15 @@ This task is designed to evaluate your skills in **Spring Boot**, **JPA**, **Web
 
 ---
 
+# Prerequisites:
+
+- **Java Version**: 21 (Ensure Java 21 is installed and configured)
+- **Angular Version**: 16.2.5 (Ensure Angular CLI version 16.2.5 is installed)
+- **Node Version**: Node.js should be installed to run Angular.
+- **IDE**: IntelliJ IDEA (Recommended for Java development)
+
+---
+
 # Spring Boot Task: User Countries
 
 This task is designed to evaluate your skills in **Spring Boot**, **JPA**, **WebClient**, **Liquibase**. You will be working with an existing database schema and implementing business logic to fetch users' favorite countries along with detailed country data from an external API (https://restcountries.com/).
@@ -99,14 +108,23 @@ You will implement functionality in **Angular** to list users and display their 
 
 ---
 
-# Submission Instructions:
-1. **Fork** the repository.
-2. **Implement** the `GET favorite-countries` endpoint in the controller and service layer.
-3. **Implement** the `WebClient` method to fetch country data from the external API (name, code, capital).
-4. **Create** a **Liquibase changelog** to insert a new user and link them to at least two favorite countries.
-5. **Implement** the `UserListComponent` in Angular and set up the routing as described.
-6. **Push** your changes to your repository.
-7. During the video call, we’ll walk through your implementation and discuss your approach.
+# Task Overview and Steps:
+
+1. **Set up your environment**:
+  - Install **Java 21**, **Angular CLI 16.2.5**, **Node.js**, and use **IntelliJ IDEA**.
+
+2. **Clone the repository** to your local machine and get familiar with the existing project structure.
+
+3. **Prepare for implementation**:
+  - Review the requirements and tasks you will need to implement.
+  - Make sure you understand the existing project setup and the expected deliverables.
+
+4. **During the video call**:
+  - **Implement** the `GET favorite-countries` endpoint in the controller and service layer.
+  - **Implement** the `WebClient` method to fetch country data from the external API (name, code, capital).
+  - **Create** a **Liquibase changelog** to insert a new user and link them to at least two favorite countries.
+  - **Implement** the `UserListComponent` in Angular and set up the routing as described.
+  - **Discussion**: Review your implementation and discuss the approach you took for solving the task.
 
 ---
 
