@@ -1,21 +1,65 @@
 package lv.visma.consulting.usercountriesapi.services;
 
-import lombok.AllArgsConstructor;
+import lv.visma.consulting.usercountriesapi.controllers.dto.CountryDto;
 import lv.visma.consulting.usercountriesapi.controllers.dto.UserDto;
+import lv.visma.consulting.usercountriesapi.converters.CountryConverter;
 import lv.visma.consulting.usercountriesapi.converters.UserConverter;
 import lv.visma.consulting.usercountriesapi.db.repositories.UserRepository;
+import lv.visma.consulting.usercountriesapi.utilities.errors.UserNotFoundException;
+import lv.visma.consulting.usercountriesapi.web.client.dto.WebClientCountryDto;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.function.EntityResponse;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-@AllArgsConstructor
 @Service
 public class UserService {
     private final UserRepository userRepository;
-
+    private final WebClient webClient;
+    public UserService(UserRepository userRepository, WebClient.Builder webClientBuilder) {
+        this.userRepository = userRepository;
+        this.webClient = webClientBuilder.baseUrl("https://restcountries.com").build();
+    }
     public List<UserDto> getAllUsers() {
         var entityUsers = userRepository.findAll();
         return UserConverter.toDTOList(entityUsers);
+    }
+
+    public List<CountryDto> getFavoriteCountries(Long userId) {
+        var userEntity = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        var favoriteCountries = userEntity.getFavoriteCountries();
+
+        return favoriteCountries.stream()
+                .map(countryEntity -> {
+                    var countryDetails = webClient.get()
+                            .uri("/v3.1/alpha/" + countryEntity.getCode())
+                            .retrieve()
+                            .bodyToMono(new ParameterizedTypeReference<List<WebClientCountryDto>>() {})
+                            .block();
+
+                    if (countryDetails == null || countryDetails.isEmpty()) {
+                        throw new RuntimeException("Country details not found for code: " + countryEntity.getCode());
+                    }
+
+                    return CountryConverter.toDto(countryDetails.get(0)); // Берем первый объект из массива
+                })
+                .collect(Collectors.toList());
+    }
+
+    public Object getUserDetails() {
+        return null;
+    }
+
+    @Transactional
+    public void deleteUserById(Long userId) throws UserNotFoundException {
+        if (userRepository.existsById(userId)) {
+            userRepository.deleteById(userId);
+        } else {
+            throw new UserNotFoundException("User not found with id: " + userId);
+        }
     }
 }

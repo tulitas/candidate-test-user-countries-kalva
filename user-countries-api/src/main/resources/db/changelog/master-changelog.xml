@@ -9,5 +9,6 @@
     <include file="db/changelog/changelog-2025-02-17-create-countries-table.xml"/>
     <include file="db/changelog/changelog-2025-02-17-create-favorite-country-table.xml"/>
     <include file="db/changelog/changelog-2025-02-17-insert-data.xml"/>
+    <include file="db/changelog/insert_user_favorites.xml"/>
 
 </databaseChangeLog>
