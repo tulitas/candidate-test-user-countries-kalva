@@ -1,5 +1,21 @@
-<div class="add-user">
-  <h2>Добавить пользователя</h2>
-  <!-- Здесь будет форма для добавления пользователя -->
-</div>
+<div class="add-user-container">
+  <h2>Add New User</h2>
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        class="form-control"
+        [(ngModel)]="username"
+        required
+        minlength="3"
+      />
+    </div>
 
+    <button type="submit" class="submit-button" [disabled]="!userForm.valid">
+      Add User
+    </button>
+  </form>
+</div>

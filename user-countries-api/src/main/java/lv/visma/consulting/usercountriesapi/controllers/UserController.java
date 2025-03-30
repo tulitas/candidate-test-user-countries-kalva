@@ -5,12 +5,10 @@ import lv.visma.consulting.usercountriesapi.controllers.dto.CountryDto;
 import lv.visma.consulting.usercountriesapi.controllers.dto.UserDto;
 import lv.visma.consulting.usercountriesapi.services.UserService;
 import lv.visma.consulting.usercountriesapi.utilities.errors.UserNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +31,11 @@ public class UserController {
     @DeleteMapping("/{userId}/delete")
     public void deleteUser(@PathVariable Long userId) throws UserNotFoundException {
         userService.deleteUserById(userId);
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<Void> addUser(@RequestBody UserDto newUser) {
+        userService.addUser(newUser);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

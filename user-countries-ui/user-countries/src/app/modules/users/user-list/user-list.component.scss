@@ -67,7 +67,7 @@ h2 {
 
 .action-buttons {
   display: flex;
-  gap: 10px; /* Увеличивает расстояние между кнопками */
+  gap: 10px;
 }
 
 .delete-button,
@@ -133,7 +133,7 @@ h2 {
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  pointer-events: none; /* Чтобы окно не мешало взаимодействию с элементами */
+  pointer-events: none;
 }
 
 .country-name {
@@ -145,14 +145,14 @@ h2 {
   color: #4A90E2;
 }
 .id-container {
-  display: flex; /* Устанавливаем горизонтальную линию */
-  align-items: center; /* Центруем элементы вертикально */
+  display: flex;
+  align-items: center;
 }
 
 .hover-instruction {
-  margin-left: auto; /* Сдвиг вправо */
-  color: #888888; /* Серый цвет текста */
-  font-size: 14px; /* Размер шрифта */
-  font-style: italic; /* Лёгкий акцент */
+  margin-left: auto;
+  color: #888888;
+  font-size: 14px;
+  font-style: italic;
 }
 

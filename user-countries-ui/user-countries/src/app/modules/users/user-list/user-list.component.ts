@@ -77,11 +77,11 @@ export class UserListComponent implements OnInit {
   loadCountryDetails(countryCode: string): void {
     this.countryService.getCountryDetails(countryCode).subscribe(
       (data) => {
-        const country = data[0]; // REST API возвращает массив с одной страной
+        const country = data[0];
         this.hoveredCountry = {
           name: country.name.common,
           region: country.region,
-          capital: country.capital?.[0] || 'N/A', // Если столиц нет, показать "N/A"
+          capital: country.capital?.[0] || 'N/A',
           population: country.population,
           area: country.area
         };
@@ -93,11 +93,11 @@ export class UserListComponent implements OnInit {
   }
 
   hideCountryDetails(): void {
-    this.hoveredCountry = null; // Скрыть всплывающее окно
+    this.hoveredCountry = null;
   }
 
   updateTooltipPosition(event: MouseEvent): void {
-    this.tooltipX = event.clientX + 10; // Сдвиг на 10px вправо
-    this.tooltipY = event.clientY - 50; // Сдвиг на 10px вниз
+    this.tooltipX = event.clientX + 10;
+    this.tooltipY = event.clientY - 50;
   }
 }

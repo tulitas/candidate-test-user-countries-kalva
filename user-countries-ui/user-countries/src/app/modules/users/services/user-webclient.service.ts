@@ -29,4 +29,9 @@ export class UserWebclientService {
   deleteUser(userId: number): Observable<void> {
     return this.httpClient.delete<void>(`${environment.apiUrl}${this.URI}/${userId}/delete`);
   }
+
+  addUser(newUser: { username: string }): Observable<void> {
+    const url = `${environment.apiUrl}${this.URI}/add`;
+    return this.httpClient.post<void>(url, newUser);
+  }
 }
