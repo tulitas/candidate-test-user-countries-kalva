@@ -1,0 +1,47 @@
+<div class="user-list">
+  <h2>User List</h2>
+  <div *ngIf="isLoading" class="loading-container">
+    <p class="loading-message">Loading...</p>
+  </div>
+  <table *ngIf="!isLoading" class="user-table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>User Name</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ng-container *ngFor="let user of users">
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td class="action-buttons">
+          <button (click)="toggleDetails(user)" class="details-button">Details</button>
+          <button (click)="deleteUser(user.id, $event)" class="delete-button">Delete</button>
+        </td>
+      </tr>
+      <tr *ngIf="expandedUserId === user.id" class="details-row">
+        <td colspan="3">
+          <div class="user-details">
+            <p><strong>ID:</strong> {{ user.id }}</p>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Favorite Countries:</strong></p>
+            <div *ngIf="favoriteCountries[user.id]; else loading">
+              <div *ngFor="let country of favoriteCountries[user.id]" class="country-row">
+                <span class="country-name">{{ country.name }}</span>
+                <span class="country-code">({{ country.code }})</span>
+                <span class="country-capitals">Capitals: {{ country.capitals?.join(', ') || 'N/A' }}</span>
+              </div>
+            </div>
+            <ng-template #loading>Loading...</ng-template>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+  <div class="button-container">
+    <button routerLink="/main" class="secondary-button">Main screen</button>
+  </div>
+</div>

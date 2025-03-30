@@ -1,0 +1,48 @@
+.home-page {
+  font-family: Arial, sans-serif;
+  margin: 20px auto;
+  text-align: center;
+}
+
+h1 {
+  color: #4A90E2;
+  font-size: 28px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #4A90E2;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.primary-button,
+.secondary-button {
+  font-size: 18px;
+  padding: 10px 20px;
+  border: 1px solid #4A90E2;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.primary-button {
+  background-color: #4A90E2;
+  color: #fff;
+}
+
+.primary-button:hover {
+  background-color: #357ABD;
+}
+
+.secondary-button {
+  background-color: #fff;
+  color: #4A90E2;
+}
+
+.secondary-button:hover {
+  background-color: #E6F7FF;
+}

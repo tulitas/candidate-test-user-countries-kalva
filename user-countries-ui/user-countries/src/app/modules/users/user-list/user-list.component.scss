@@ -1,0 +1,126 @@
+.user-list {
+  width: 80%;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  color: #4A90E2;
+  margin-bottom: 20px;
+  font-size: 24px;
+  border-bottom: 2px solid #4A90E2;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.user-table th,
+.user-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.user-table thead {
+  background-color: #f4f4f4;
+}
+
+.user-table tr:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.details-row {
+  background-color: #f7f7f7;
+}
+
+.user-details {
+  padding: 10px;
+  background-color: #e6f7ff;
+  border: 1px solid #4A90E2;
+  border-radius: 5px;
+}
+
+.country-row {
+  margin: 5px 0;
+}
+
+.country-name {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.country-code {
+  color: #888;
+}
+
+.country-capitals {
+  font-size: 14px;
+  color: #555;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px; /* Увеличивает расстояние между кнопками */
+}
+
+.delete-button,
+.details-button {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.delete-button {
+  color: #ff6f61;
+  border-color: #ff6f61;
+}
+
+.delete-button:hover {
+  background-color: #ff6f61;
+  color: #fff;
+}
+
+.details-button {
+  color: #4A90E2;
+  border-color: #4A90E2;
+}
+
+.details-button:hover {
+  background-color: #4A90E2;
+  color: #fff;
+}
+
+.button-container {
+  display: flex;
+  justify-content: left;
+  gap: 15px;
+}
+
+.secondary-button {
+  font-size: 18px;
+  padding: 10px 20px;
+  border: 1px solid #4A90E2;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.secondary-button {
+  background-color: #fff;
+  color: #4A90E2;
+}
+
+.secondary-button:hover {
+  background-color: #E6F7FF;
+}
