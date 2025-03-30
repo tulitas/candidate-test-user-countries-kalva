@@ -24,17 +24,38 @@
       <tr *ngIf="expandedUserId === user.id" class="details-row">
         <td colspan="3">
           <div class="user-details">
-            <p><strong>ID:</strong> {{ user.id }}</p>
+            <p class="id-container">
+              <strong>ID:</strong> {{ user.id }}
+              <span class="hover-instruction">Hover over a country to see details</span>
+            </p>
             <p><strong>Username:</strong> {{ user.username }}</p>
             <p><strong>Favorite Countries:</strong></p>
             <div *ngIf="favoriteCountries[user.id]; else loading">
+
               <div *ngFor="let country of favoriteCountries[user.id]" class="country-row">
-                <span class="country-name">{{ country.name }}</span>
+                <span class="country-name"
+                  (mouseenter)="loadCountryDetails(country.code)"
+                  (mouseleave)="hideCountryDetails()"
+                  (mousemove)="updateTooltipPosition($event)">
+                  {{ country.name }}
+              </span>
                 <span class="country-code">({{ country.code }})</span>
                 <span class="country-capitals">Capitals: {{ country.capitals?.join(', ') || 'N/A' }}</span>
               </div>
             </div>
             <ng-template #loading>Loading...</ng-template>
+
+            <ng-template #loading>Loading...</ng-template>
+            <!-- Всплывающее окно -->
+            <div *ngIf="hoveredCountry" class="tooltip"
+                 [style.left.px]="tooltipX"
+                 [style.top.px]="tooltipY">
+              <p><strong>{{ hoveredCountry.name }}</strong></p>
+              <p>Region: {{ hoveredCountry.region }}</p>
+              <p>Capital: {{ hoveredCountry.capital }}</p>
+              <p>Population: {{ hoveredCountry.population }}</p>
+              <p>Area: {{ hoveredCountry.area }} km²</p>
+            </div>
           </div>
         </td>
       </tr>

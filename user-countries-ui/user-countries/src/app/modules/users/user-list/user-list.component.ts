@@ -2,6 +2,8 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {User} from "../models/user";
 import {UserWebclientService} from "../services/user-webclient.service";
 import {MatDialog} from "@angular/material/dialog";
+import {CountryService} from "../../../services/country.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-user-list',
@@ -13,15 +15,17 @@ export class UserListComponent implements OnInit {
   expandedUserId: number | null = null;
   favoriteCountries: { [key: number]: any[] } = {};
   isLoading = true;
-
-  constructor(private userWebclientService: UserWebclientService, private cdRef: ChangeDetectorRef) {}
+  hoveredCountry: any | null = null;
+  tooltipX = 0;
+  tooltipY = 0;
+  constructor(private userWebclientService: UserWebclientService,
+              private countryService: CountryService) {}
 
   ngOnInit(): void {
     this.loadUsers();
   }
 
   private loadUsers(): void {
-    console.log('Load')
     this.userWebclientService.getAllUsers().subscribe(
       (users) => {
         this.users = users;
@@ -54,14 +58,11 @@ export class UserListComponent implements OnInit {
   }
 
   deleteUser(userId: number, event: Event): void {
-    event.stopPropagation(); // Останавливаем распространение события, чтобы не раскрывать детали
+    event.stopPropagation();
     this.userWebclientService.deleteUser(userId).subscribe(
       () => {
-        // Перезагружаем список пользователей с сервера после удаления
-        console.log('reload')
         this.loadUsers();
 
-        // Если удаленный пользователь был раскрытым, скрываем детали
         if (this.expandedUserId === userId) {
           this.expandedUserId = null;
         }
@@ -73,10 +74,30 @@ export class UserListComponent implements OnInit {
     );
   }
 
+  loadCountryDetails(countryCode: string): void {
+    this.countryService.getCountryDetails(countryCode).subscribe(
+      (data) => {
+        const country = data[0]; // REST API возвращает массив с одной страной
+        this.hoveredCountry = {
+          name: country.name.common,
+          region: country.region,
+          capital: country.capital?.[0] || 'N/A', // Если столиц нет, показать "N/A"
+          population: country.population,
+          area: country.area
+        };
+      },
+      (error) => {
+        console.error(`Error fetching details for country ${countryCode}:`, error);
+      }
+    );
+  }
 
+  hideCountryDetails(): void {
+    this.hoveredCountry = null; // Скрыть всплывающее окно
+  }
 
-
-
-
-
+  updateTooltipPosition(event: MouseEvent): void {
+    this.tooltipX = event.clientX + 10; // Сдвиг на 10px вправо
+    this.tooltipY = event.clientY - 50; // Сдвиг на 10px вниз
+  }
 }

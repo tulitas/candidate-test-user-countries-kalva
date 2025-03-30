@@ -124,3 +124,35 @@ h2 {
 .secondary-button:hover {
   background-color: #E6F7FF;
 }
+
+.tooltip {
+  position: fixed;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  pointer-events: none; /* Чтобы окно не мешало взаимодействию с элементами */
+}
+
+.country-name {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.country-name:hover {
+  color: #4A90E2;
+}
+.id-container {
+  display: flex; /* Устанавливаем горизонтальную линию */
+  align-items: center; /* Центруем элементы вертикально */
+}
+
+.hover-instruction {
+  margin-left: auto; /* Сдвиг вправо */
+  color: #888888; /* Серый цвет текста */
+  font-size: 14px; /* Размер шрифта */
+  font-style: italic; /* Лёгкий акцент */
+}
+

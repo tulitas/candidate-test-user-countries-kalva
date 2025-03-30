@@ -7,12 +7,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from "@angular/material/dialog";
-import { UserDetailsComponent } from './modules/user-details/user-details.component';
 
 @NgModule({
   declarations: [AppComponent,
-    HomeComponent,
-    UserDetailsComponent],
+    HomeComponent],
   imports: [BrowserModule,
     HttpClientModule,
     AppRoutingModule,
