@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { AddUserRoutingModule } from './add-user-routing.module';
 import { AddUserComponent } from './add-user.component';
 import {FormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -13,7 +15,9 @@ import {FormsModule} from "@angular/forms";
   imports: [
     CommonModule,
     AddUserRoutingModule,
-    FormsModule
+    FormsModule,
+    MatFormFieldModule,
+    MatSelectModule
   ]
 })
 export class AddUserModule { }

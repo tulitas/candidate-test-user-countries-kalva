@@ -14,8 +14,25 @@
       />
     </div>
 
+    <div class="form-group">
+      <label for="favorite-countries">Select Favorite Countries:</label>
+      <select
+        id="favorite-countries"
+        name="favoriteCountryIds"
+        class="form-control"
+        multiple
+        [(ngModel)]="favoriteCountryIds">
+        <option *ngFor="let country of countries" [value]="country.id">
+          {{ country.name }}
+        </option>
+      </select>
+    </div>
+
     <button type="submit" class="submit-button" [disabled]="!userForm.valid">
       Add User
     </button>
   </form>
+  <div class="button-container">
+    <button routerLink="/" class="secondary-button">To User List</button>
+  </div>
 </div>

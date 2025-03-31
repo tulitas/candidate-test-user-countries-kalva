@@ -1,0 +1,69 @@
+.add-user-container {
+  width: 100%;
+  max-width: 500px; /* Ограничиваем ширину для лучшего отображения */
+  margin: 0 auto; /* Центрируем форму на странице */
+  background-color: #f9f9f9; /* Лёгкий фон для контраста */
+  border-radius: 8px; /* Скругленные углы */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для более выразительного дизайна */
+  padding: 20px; /* Отступы внутри контейнера */
+  font-family: Arial, sans-serif; /* Шрифт для текста */
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+select {
+  height: 150px; /* Увеличенная высота для выбора нескольких стран */
+  overflow-y: auto;
+}
+
+input[type="text"]:focus,
+select:focus {
+  border-color: #4A90E2; /* Подсветка границы при фокусе */
+  outline: none;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4A90E2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+button:not(:disabled):hover {
+  background-color: #357ABD; /* Цвет при наведении */
+}

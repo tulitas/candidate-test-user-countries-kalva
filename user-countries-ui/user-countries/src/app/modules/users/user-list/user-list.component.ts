@@ -98,6 +98,6 @@ export class UserListComponent implements OnInit {
 
   updateTooltipPosition(event: MouseEvent): void {
     this.tooltipX = event.clientX + 10;
-    this.tooltipY = event.clientY - 50;
+    this.tooltipY = event.clientY - 200;
   }
 }

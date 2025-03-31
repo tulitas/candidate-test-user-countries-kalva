@@ -1,35 +1,15 @@
-.add-user-container {
-  width: 300px;
-  margin: 20px auto;
-  font-family: Arial, sans-serif;
-}
-
-h2 {
-  text-align: center;
-  color: #4A90E2;
-}
-
 .form-group {
   margin-bottom: 15px;
 }
 
 label {
-  display: block;
-  margin-bottom: 5px;
   font-weight: bold;
 }
 
-input {
+select {
   width: 100%;
-  padding: 8px;
+  height: 150px; /* Чтобы отображать несколько стран */
   box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-input:focus {
-  outline: none;
-  border-color: #4A90E2;
 }
 
 .submit-button {
