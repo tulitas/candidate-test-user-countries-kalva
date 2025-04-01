@@ -1,17 +1,19 @@
 <div class="add-user-container">
   <h2>Add New User</h2>
-  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+  <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="username">Username:</label>
+      <label for="username">Username: <span class="required">*</span></label>
       <input
         type="text"
         id="username"
         name="username"
         class="form-control"
-        [(ngModel)]="username"
-        required
-        minlength="3"
+        formControlName="username"
       />
+      <div *ngIf="addUserForm.get('username')?.invalid && addUserForm.get('username')?.touched">
+        <p *ngIf="addUserForm.get('username')?.errors?.['required']">Username is required.</p>
+        <p *ngIf="addUserForm.get('username')?.errors?.['minlength']">Username must be at least 3 characters long.</p>
+      </div>
     </div>
 
     <div class="form-group">
@@ -21,14 +23,15 @@
         name="favoriteCountryIds"
         class="form-control"
         multiple
-        [(ngModel)]="favoriteCountryIds">
+        formControlName="favoriteCountryIds"
+      >
         <option *ngFor="let country of countries" [value]="country.id">
           {{ country.name }}
         </option>
       </select>
     </div>
 
-    <button type="submit" class="submit-button" [disabled]="!userForm.valid">
+    <button type="submit" class="submit-button" [disabled]="addUserForm.invalid">
       Add User
     </button>
   </form>

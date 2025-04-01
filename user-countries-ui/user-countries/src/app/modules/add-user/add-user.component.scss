@@ -67,3 +67,7 @@ button:disabled {
 button:not(:disabled):hover {
   background-color: #357ABD;
 }
+
+.required {
+  color: red;
+}

@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { AddUserRoutingModule } from './add-user-routing.module';
 import { AddUserComponent } from './add-user.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
-
 
 @NgModule({
   declarations: [
@@ -17,7 +16,9 @@ import {MatSelectModule} from "@angular/material/select";
     AddUserRoutingModule,
     FormsModule,
     MatFormFieldModule,
-    MatSelectModule
-  ]
+    MatSelectModule,
+    ReactiveFormsModule
+  ],
+  exports: [AddUserComponent],
 })
 export class AddUserModule { }
