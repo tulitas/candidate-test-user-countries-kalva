@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/favorite-countries")
-    public ResponseEntity<List<CountryDto>> getFavoriteCountries(@PathVariable Long userId) {
+    public ResponseEntity<List<CountryDto>> getFavoriteCountries(@PathVariable Long userId) throws UserNotFoundException {
         return ResponseEntity.ok(userService.getFavoriteCountries(userId));
     }
 

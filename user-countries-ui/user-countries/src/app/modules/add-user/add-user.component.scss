@@ -1,12 +1,12 @@
 .add-user-container {
   width: 100%;
-  max-width: 500px; /* Ограничиваем ширину для лучшего отображения */
-  margin: 0 auto; /* Центрируем форму на странице */
-  background-color: #f9f9f9; /* Лёгкий фон для контраста */
-  border-radius: 8px; /* Скругленные углы */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень для более выразительного дизайна */
-  padding: 20px; /* Отступы внутри контейнера */
-  font-family: Arial, sans-serif; /* Шрифт для текста */
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
 h2 {
@@ -37,13 +37,13 @@ select {
 }
 
 select {
-  height: 150px; /* Увеличенная высота для выбора нескольких стран */
+  height: 150px;
   overflow-y: auto;
 }
 
 input[type="text"]:focus,
 select:focus {
-  border-color: #4A90E2; /* Подсветка границы при фокусе */
+  border-color: #4A90E2;
   outline: none;
   box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
 }
@@ -65,5 +65,5 @@ button:disabled {
 }
 
 button:not(:disabled):hover {
-  background-color: #357ABD; /* Цвет при наведении */
+  background-color: #357ABD;
 }

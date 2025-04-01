@@ -16,6 +16,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.HashSet;
 import java.util.List;
@@ -39,26 +41,30 @@ public class UserService {
         return UserConverter.toDTOList(entityUsers);
     }
 
-    public List<CountryDto> getFavoriteCountries(Long userId) {
+    public List<CountryDto> getFavoriteCountries(Long userId) throws UserNotFoundException {
         var userEntity = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException("User not found")); // Используем пользовательское исключение
+
         var favoriteCountries = userEntity.getFavoriteCountries();
 
-        return favoriteCountries.stream()
-                .map(countryEntity -> {
-                    var countryDetails = webClient.get()
+        return Flux.fromIterable(favoriteCountries)
+                .flatMap(countryEntity -> {
+                    return webClient.get()
                             .uri("/v3.1/alpha/" + countryEntity.getCode())
                             .retrieve()
                             .bodyToMono(new ParameterizedTypeReference<List<WebClientCountryDto>>() {})
-                            .block();
-
-                    if (countryDetails == null || countryDetails.isEmpty()) {
-                        throw new RuntimeException("Country details not found for code: " + countryEntity.getCode());
-                    }
-
-                    return CountryConverter.toDto(countryDetails.get(0)); // Берем первый объект из массива
+                            .flatMap(countryDetails -> {
+                                if (countryDetails == null || countryDetails.isEmpty()) {
+                                    throw new RuntimeException("Country details not found for code: " + countryEntity.getCode());
+                                }
+                                return Mono.just(CountryConverter.toDto(countryDetails.get(0))); // Предполагается, что у вас есть CountryConverter
+                            })
+                            .onErrorResume(e -> {
+                                throw new RuntimeException("Country details not found for code: " + countryEntity.getCode());
+                            });
                 })
-                .collect(Collectors.toList());
+                .collectList()
+                .block();
     }
 
     @Transactional
@@ -92,7 +98,6 @@ public class UserService {
             userRepository.save(user);
         }
     }
-
 
     public void resetSequence() {
         jdbcTemplate.execute("ALTER TABLE users ALTER COLUMN id RESTART WITH (SELECT MAX(id) + 1 FROM users)");

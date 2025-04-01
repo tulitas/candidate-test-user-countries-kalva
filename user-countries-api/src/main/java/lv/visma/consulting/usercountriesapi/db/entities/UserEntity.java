@@ -19,9 +19,9 @@ public class UserEntity {
 
     @ManyToMany
     @JoinTable(
-            name = "favorite_country", // This is the junction table
-            joinColumns = @JoinColumn(name = "user_id"),  // Foreign key to 'user' table
-            inverseJoinColumns = @JoinColumn(name = "country_id") // Foreign key to 'country' table
+            name = "favorite_country",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "country_id")
     )
     private Set<CountryEntity> favoriteCountries;
 }
