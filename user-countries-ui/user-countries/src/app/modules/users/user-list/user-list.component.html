@@ -12,7 +12,7 @@
     </tr>
     </thead>
     <tbody>
-    <ng-container *ngFor="let user of users">
+    <ng-container *ngFor="let user of paginatedUsers">
       <tr>
         <td>{{ user.id }}</td>
         <td>{{ user.username }}</td>
@@ -31,12 +31,11 @@
             <p><strong>Username:</strong> {{ user.username }}</p>
             <p><strong>Favorite Countries:</strong></p>
             <div *ngIf="favoriteCountries[user.id]; else loading">
-
               <div *ngFor="let country of favoriteCountries[user.id]" class="country-row">
                 <span class="country-name"
-                  (mouseenter)="loadCountryDetails(country.code)"
-                  (mouseleave)="hideCountryDetails()"
-                  (mousemove)="updateTooltipPosition($event)">
+                      (mouseenter)="loadCountryDetails(country.code)"
+                      (mouseleave)="hideCountryDetails()"
+                      (mousemove)="updateTooltipPosition($event)">
                   {{ country.name }}
               </span>
                 <span class="country-code">({{ country.code }})</span>
@@ -44,9 +43,6 @@
               </div>
             </div>
             <ng-template #loading>Loading...</ng-template>
-
-            <ng-template #loading>Loading...</ng-template>
-            <!-- Всплывающее окно -->
             <div *ngIf="hoveredCountry" class="tooltip"
                  [style.left.px]="tooltipX"
                  [style.top.px]="tooltipY">
@@ -62,6 +58,13 @@
     </ng-container>
     </tbody>
   </table>
+
+  <div class="pagination">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+  </div>
+
   <div class="button-container">
     <button routerLink="/main" class="secondary-button">Main screen</button>
   </div>

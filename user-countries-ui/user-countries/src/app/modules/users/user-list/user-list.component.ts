@@ -18,6 +18,9 @@ export class UserListComponent implements OnInit {
   hoveredCountry: any | null = null;
   tooltipX = 0;
   tooltipY = 0;
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
+
   constructor(private userWebclientService: UserWebclientService,
               private countryService: CountryService) {}
 
@@ -100,4 +103,26 @@ export class UserListComponent implements OnInit {
     this.tooltipX = event.clientX + 10;
     this.tooltipY = event.clientY - 200;
   }
+
+  get paginatedUsers() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.users.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  get totalPages() {
+    return Math.ceil(this.users.length / this.itemsPerPage);
+  }
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
 }
